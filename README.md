@@ -31,7 +31,8 @@ Therefore, the cache-aware version might perform slightly worse or show minimal 
 Example output when sorting an array of size 20,000,000:  
 
 ```  
-Array size: 20000000 elements  
+Array size: 20000000 elements
+Block size: 12288
   
 ----------------------------------------------------------------------------------------  
                 Merge Sort (ms)  Cache-Aware Merge Sort (ms)  Speedup (x)   Difference  
