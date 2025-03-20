@@ -117,18 +117,4 @@ The default block size of **12288 elements** is based on the size of the L1 cach
 2. The array is composed of `int` values, which are **4 bytes** each.  
 3. \( 48 \, \text{KB} \div 4 \, \text{bytes} = 12288 \) elements.  
 
-By setting the block size to 12288 elements (which fits within the L1 cache), the program minimizes cache misses and improves sorting performance by ensuring that the data being processed fits entirely in the L1 cache. This increases memory locality and reduces the need to access slower levels of memory.
-
-## **Explanation of Code**  
-### **Merge Sort**  
-- `merge_sort` function implements the classic recursive merge sort algorithm.  
-- It divides the array into two halves, sorts them recursively, and merges the results using the `merge` function.  
-
-### **Cache-Aware Merge Sort**  
-- `cache_aware_merge_sort` divides the input into fixed-size blocks (`BLOCK_SIZE = 12288`).  
-- Each block is sorted individually using `merge_sort`.  
-- Adjacent sorted blocks are merged iteratively in powers of two until the entire array is sorted.  
-
-### **Performance Measurement**  
-- The `zen::timer` class measures the execution time of both sorting methods.  
-- The program compares execution times and calculates the speedup and difference between the two approaches.  
+By setting the block size to 12288 elements (which fits within the L1 cache), the program minimizes cache misses and improves sorting performance by ensuring that the data being processed fits entirely in the L1 cache. This increases memory locality and reduces the need to access slower levels of memory. 
