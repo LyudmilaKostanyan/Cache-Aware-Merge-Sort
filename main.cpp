@@ -89,14 +89,27 @@ int main()
     timer.start();
     merge_sort(arr.begin(), arr.end());
     timer.stop();
-    std::cout << "merge_sort: " << timer.duration<zen::timer::msec>().count() << std::endl;
+    auto merge_sort_time = timer.duration<zen::timer::msec>().count();
     timer.start();
     cache_aware_merge_sort(arr.begin(), arr.end());
     timer.stop();
-    std::cout << "cache_aware_merge_sort: " << timer.duration<zen::timer::msec>().count() << std::endl;
-    timer.start();
-    std::sort(arr.begin(), arr.end());
-    timer.stop();
-    std::cout << "std::sort: " << timer.duration<zen::timer::msec>().count() << std::endl;
+    auto cache_aware_time = timer.duration<zen::timer::msec>().count();
+    auto speedup = cache_aware_time ? static_cast<double>(merge_sort_time) / cache_aware_time : 0;
+    if (merge_sort_time < cache_aware_time)
+        speedup = merge_sort_time ? static_cast<double>(cache_aware_time) / merge_sort_time : 0;
+    auto difference = cache_aware_time - merge_sort_time;
+    if (merge_sort_time > cache_aware_time)
+        difference = merge_sort_time - cache_aware_time;
+
+    std::cout << "Array size: " << N << " elements\n\n";
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "----------------------------------------------------------------------------------------\n";
+    std::cout << "                Merge Sort (ms)  Cache-Aware Merge Sort (ms)  Speedup (x)   Difference\n";
+    std::cout << "----------------------------------------------------------------------------------------\n";
+    std::cout << "Access Time    " << std::setw(14) << merge_sort_time << "    "
+              << std::setw(20) << cache_aware_time << "       "
+              << std::setw(8) << speedup << "       "
+              << std::setw(8) << difference << "\n";
+    std::cout << "----------------------------------------------------------------------------------------\n";
     return 0;
 }
