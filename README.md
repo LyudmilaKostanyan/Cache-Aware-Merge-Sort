@@ -67,6 +67,20 @@ Navigate to the build directory and run the executable:
 cd build  
 ./main.exe  
 ```
+### **How to Build and Run**  
+To build the project, navigate to the project directory and use the following commands:
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
+
+**Example with arguments:**  
+```bash
+./build/main.exe --block-size 300 --n 20000
+```
 
 Example output:  
 
@@ -81,6 +95,26 @@ Access Time                 8                       8           1.00            
 ----------------------------------------------------------------------------------------
 ```
 
+**Example without arguments (uses default values):**  
+```bash
+./build/main.exe
+```
+
+### **For Linux/macOS Users**  
+If you are using **Linux** or **macOS**, the executable will be called `main` instead of `main.exe`. Run it like this:
+
+```bash
+./build/main --block-size 300 --n 20000
+```
+
+or without arguments:
+
+```bash
+./build/main
+```
+
+---
+
 ### **Explanation**  
 - `--block-size`: Sets the block size used in the cache-aware merge sort.  
 - `--n`: Sets the size of the array to be sorted.  
@@ -92,7 +126,7 @@ If you don't specify the values, the program will use the following defaults:
 - `N = 20000000`  
 
 #### **Why `BLOCK_SIZE = 12288`?**  
-The default block size of **12288 bytes** is chosen based on the size of the L1 cache and the size of the data type being sorted:  
+The default block size of **12288 elements** is based on the size of the L1 cache and the size of the data type being sorted:  
 
 1. The L1 cache size on the target CPU is **48 KB** (49152 bytes).  
 2. The array is composed of `int` values, which are **4 bytes** each.  
