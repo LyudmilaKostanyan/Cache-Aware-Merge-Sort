@@ -63,22 +63,10 @@ cmake --build build
 ```
 
 ### **3. Run the Program**  
+### **For Windows Users**  
 **Example with arguments:**  
 ```bash
 ./build/main.exe --block-size 300 --n 20000
-```
-
-Example output:  
-
-```
-Array size: 20000 elements  
-Block size: 300  
-
-----------------------------------------------------------------------------------------
-                Merge Sort (ms)  Cache-Aware Merge Sort (ms)  Speedup (x)   Difference
-----------------------------------------------------------------------------------------
-Access Time                 8                       8           1.00              0
-----------------------------------------------------------------------------------------
 ```
 
 **Example without arguments (uses default values):**  
