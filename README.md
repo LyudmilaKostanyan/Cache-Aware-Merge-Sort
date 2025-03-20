@@ -62,21 +62,6 @@ cmake --build build
 ```
 
 ### **3. Run the Program**  
-Navigate to the build directory and run the executable:  
-```bash
-cd build  
-./main.exe  
-```
-### **How to Build and Run**  
-To build the project, navigate to the project directory and use the following commands:
-
-```bash
-mkdir build
-cd build
-cmake ..
-make
-```
-
 **Example with arguments:**  
 ```bash
 ./build/main.exe --block-size 300 --n 20000
