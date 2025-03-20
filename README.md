@@ -115,6 +115,6 @@ The default block size of **12288 elements** is based on the size of the L1 cach
 
 1. The L1 cache size on the target CPU is **48 KB** (49152 bytes).  
 2. The array is composed of `int` values, which are **4 bytes** each.  
-3. \( 48 \, \text{KB} \div 4 \, \text{bytes} = 12288 \) elements.  
+3. 48 KB ÷ 4 bytes= 12288 elements.  
 
 By setting the block size to 12288 elements (which fits within the L1 cache), the program minimizes cache misses and improves sorting performance by ensuring that the data being processed fits entirely in the L1 cache. This increases memory locality and reduces the need to access slower levels of memory. 
