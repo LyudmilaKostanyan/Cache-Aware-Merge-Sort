@@ -1,9 +1,12 @@
 #include <iostream>
 #include <iterator>
 #include <vector>
+#include <iomanip>
+#include <string>
 #include "kaizen.h"
 
-const int BLOCK_SIZE = 12288;
+int BLOCK_SIZE = 12288;
+int N = 20000000;
 
 template<typename Iterator>
 void merge(Iterator first, Iterator mid, Iterator last) {
@@ -77,10 +80,22 @@ void cache_aware_merge_sort(Iterator first, Iterator last) {
     }
 }
 
-#define N 20000000
-
-int main()
+int main(int argc, char** argv)
 {
+    zen::cmd_args args(argv, argc);
+    if (args.is_present("--block-size"))
+    {
+        auto block_size = std::stoi(args.get_options("--block-size")[0]);
+        if (block_size > 0)
+        BLOCK_SIZE = block_size;
+    }
+    if (args.is_present("--n"))
+    {
+        auto n = std::stoi(args.get_options("--n")[0]);
+        if (n > 0)
+            N = n;
+    }
+
     std::vector<int> arr(N);
 
     for (int i = N; i >= 0; i--)
@@ -101,7 +116,8 @@ int main()
     if (merge_sort_time > cache_aware_time)
         difference = merge_sort_time - cache_aware_time;
 
-    std::cout << "Array size: " << N << " elements\n\n";
+    std::cout << "Array size: " << N << " elements" << std::endl;
+    std::cout << "Block size: " << BLOCK_SIZE << std::endl << std::endl;
     std::cout << std::fixed << std::setprecision(2);
     std::cout << "----------------------------------------------------------------------------------------\n";
     std::cout << "                Merge Sort (ms)  Cache-Aware Merge Sort (ms)  Speedup (x)   Difference\n";
