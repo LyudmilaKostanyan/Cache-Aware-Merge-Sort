@@ -50,8 +50,8 @@ In this case:
 
 ### **1. Clone the Repository**  
 ```bash
-git clone https://github.com/LyudmilaKostanyan/AoS-vs-SoA.git  
-cd AoS-vs-SoA  
+git clone https://github.com/LyudmilaKostanyan/Cache-Aware-Merge-Sort.git  
+cd Cache-Aware-Merge-Sort
 ```
 
 ### **2. Build the Project**  
