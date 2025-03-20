@@ -66,9 +66,39 @@ Navigate to the build directory and run the executable:
 ```bash
 cd build  
 ./main.exe  
-```  
+```
 
----
+Example output:  
+
+```
+Array size: 20000 elements  
+Block size: 300  
+
+----------------------------------------------------------------------------------------
+                Merge Sort (ms)  Cache-Aware Merge Sort (ms)  Speedup (x)   Difference
+----------------------------------------------------------------------------------------
+Access Time                 8                       8           1.00              0
+----------------------------------------------------------------------------------------
+```
+
+### **Explanation**  
+- `--block-size`: Sets the block size used in the cache-aware merge sort.  
+- `--n`: Sets the size of the array to be sorted.  
+
+### **Default Values**  
+If you don't specify the values, the program will use the following defaults:
+
+- `BLOCK_SIZE = 12288`  
+- `N = 20000000`  
+
+#### **Why `BLOCK_SIZE = 12288`?**  
+The default block size of **12288 bytes** is chosen based on the size of the L1 cache and the size of the data type being sorted:  
+
+1. The L1 cache size on the target CPU is **48 KB** (49152 bytes).  
+2. The array is composed of `int` values, which are **4 bytes** each.  
+3. \( 48 \, \text{KB} \div 4 \, \text{bytes} = 12288 \) elements.  
+
+By setting the block size to 12288 elements (which fits within the L1 cache), the program minimizes cache misses and improves sorting performance by ensuring that the data being processed fits entirely in the L1 cache. This increases memory locality and reduces the need to access slower levels of memory.
 
 ## **Explanation of Code**  
 ### **Merge Sort**  
